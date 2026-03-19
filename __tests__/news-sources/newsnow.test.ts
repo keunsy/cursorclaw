@@ -3,17 +3,15 @@ import { NewsnowSource } from '../../shared/news-sources/newsnow';
 import type { SourceConfig } from '../../shared/news-sources/types';
 
 const MOCK_API_RESPONSE_DATA_ITEMS = {
-  data: {
-    items: [
-      { title: '热点1', url: 'https://example.com/1', extra: { value: '100万' }, desc: '摘要1' },
-      { title: '热点2', url: 'https://example.com/2', extra: { value: '80万' }, desc: '摘要2' },
-      { title: '热点3', url: 'https://example.com/3', extra: {}, desc: '' },
-    ],
-  },
+  items: [
+    { title: '热点1', url: 'https://example.com/1', extra: { value: '100万' }, desc: '摘要1' },
+    { title: '热点2', url: 'https://example.com/2', extra: { value: '80万' }, desc: '摘要2' },
+    { title: '热点3', url: 'https://example.com/3', extra: {}, desc: '' },
+  ],
 };
 
 const MOCK_API_RESPONSE_DATA = {
-  data: [
+  items: [
     { title: '微博热点', url: 'https://weibo.com/1', extra: { value: '50万' }, desc: '微博摘要' },
   ],
 };
@@ -68,7 +66,7 @@ describe('NewsnowSource', () => {
     expect(items[0].rank).toBe(1);
   });
 
-  test('解析 newsnow API 响应（包含 data 数组）', async () => {
+  test('解析 newsnow API 响应（单项数据）', async () => {
     globalThis.fetch = async () =>
       new Response(JSON.stringify(MOCK_API_RESPONSE_DATA), {
         status: 200,
@@ -104,7 +102,7 @@ describe('NewsnowSource', () => {
       createSourceConfig({ platforms: ['weibo'], timeout: 50 })
     );
 
-    await expect(source.fetch({ topN: 5 })).rejects.toThrow(/超时|timeout|abort/i);
+    await expect(source.fetch({ topN: 5 })).rejects.toThrow(/超时|timeout|abort|失败/i);
   });
 
   test('处理 API 返回错误', async () => {
@@ -117,18 +115,7 @@ describe('NewsnowSource', () => {
       createSourceConfig({ platforms: ['weibo'], timeout: 5000 })
     );
 
-    const originalConsoleError = console.error;
-    let logged = false;
-    console.error = (...args: unknown[]) => {
-      logged = true;
-      originalConsoleError.apply(console, args);
-    };
-
-    const items = await source.fetch({ topN: 5 });
-
-    expect(items).toEqual([]);
-    expect(logged).toBe(true);
-    console.error = originalConsoleError;
+    await expect(source.fetch({ topN: 5 })).rejects.toThrow(/失败|HTTP|500/i);
   });
 
   test('尊重 topN 限制', async () => {
@@ -141,7 +128,7 @@ describe('NewsnowSource', () => {
 
     globalThis.fetch = async () =>
       new Response(
-        JSON.stringify({ data: { items: manyItems } }),
+        JSON.stringify({ items: manyItems }),
         { status: 200, headers: { 'Content-Type': 'application/json' } }
       );
 

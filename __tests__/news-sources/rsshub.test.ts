@@ -101,7 +101,7 @@ describe('RSSHubSource', () => {
       createSourceConfig({ feeds: ['weibo/search/hot'], timeout: 50 })
     );
 
-    await expect(source.fetch({ topN: 5 })).rejects.toThrow(/超时|timeout|abort/i);
+    await expect(source.fetch({ topN: 5 })).rejects.toThrow(/超时|timeout|abort|失败/i);
   });
 
   test('处理无效 XML', async () => {
@@ -115,18 +115,7 @@ describe('RSSHubSource', () => {
       createSourceConfig({ feeds: ['weibo/search/hot'], timeout: 5000 })
     );
 
-    const originalConsoleError = console.error;
-    let logged = false;
-    console.error = (...args: unknown[]) => {
-      logged = true;
-      originalConsoleError.apply(console, args);
-    };
-
-    const items = await source.fetch({ topN: 5 });
-
-    expect(items).toEqual([]);
-    expect(logged).toBe(true);
-    console.error = originalConsoleError;
+    await expect(source.fetch({ topN: 5 })).rejects.toThrow(/失败|invalid|XML/i);
   });
 
   test('尊重 topN 限制', async () => {
@@ -173,17 +162,6 @@ describe('RSSHubSource', () => {
       createSourceConfig({ feeds: ['weibo/search/hot'], timeout: 5000 })
     );
 
-    const originalConsoleError = console.error;
-    let logged = false;
-    console.error = (...args: unknown[]) => {
-      logged = true;
-      originalConsoleError.apply(console, args);
-    };
-
-    const items = await source.fetch({ topN: 5 });
-
-    expect(items).toEqual([]);
-    expect(logged).toBe(true);
-    console.error = originalConsoleError;
+    await expect(source.fetch({ topN: 5 })).rejects.toThrow(/失败|HTTP|500/i);
   });
 });

@@ -1,10 +1,10 @@
 # CursorClaw
 
-钉钉 → Cursor AI 远程遥控服务。
+IM 平台 → Cursor AI 远程遥控服务。
 
 ## 技术栈
 - Bun + TypeScript
-- 钉钉 Stream API
+- IM 平台 SDK（飞书/钉钉/企业微信）
 - Cursor Agent CLI
 
 ## 核心模块
