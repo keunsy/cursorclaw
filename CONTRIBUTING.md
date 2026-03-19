@@ -54,7 +54,7 @@
 2. **克隆你的 Fork**
 
    ```bash
-   git clone https://github.com/你的用户名/cursorclaw.git
+   git clone https://github.com/keunsy/cursorclaw.git
    cd cursorclaw
    ```
 
@@ -549,7 +549,7 @@ WIP
 
 ```bash
 # 1. Fork 并克隆
-git clone https://github.com/你的用户名/cursorclaw.git
+git clone https://github.com/keunsy/cursorclaw.git
 cd cursorclaw
 
 # 2. 创建分支

@@ -82,5 +82,5 @@
 
 功能与版本以原仓库 [feishu-cursor-claw](https://github.com/nongjun/feishu-cursor-claw) 为准，本项目自 2.0.0 起在其基础上演进。
 
-[Unreleased]: https://github.com/你的用户名/cursorclaw/compare/v2.0.0...HEAD
-[2.0.0]: https://github.com/你的用户名/cursorclaw/releases/tag/v2.0.0
+[Unreleased]: https://github.com/keunsy/cursorclaw/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/keunsy/cursorclaw/releases/tag/v2.0.0

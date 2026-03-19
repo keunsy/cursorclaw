@@ -1,5 +1,5 @@
 {
-  "name": "dingtalk-cursor-claw",
+  "name": "cursorclaw-dingtalk",
   "version": "0.1.0",
   "description": "Turn DingTalk into a remote control for Cursor AI — your personal AI strategic partner via IM",
   "type": "module",
@@ -23,7 +23,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/你的用户名/cursorclaw"
+    "url": "https://github.com/keunsy/cursorclaw"
   },
   "devDependencies": {
     "@types/bun": "latest"

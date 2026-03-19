@@ -40,7 +40,7 @@ dingtalk-cursor-claw/
 
 ## 共享模块（通过符号链接）
 
-以下模块通过符号链接共享自 `feishu-cursor-claw` 项目：
+以下模块通过 `shared/` 目录共享：
 
 - `bridge.ts` → OpenAI API 桥接
 - `memory.ts` → 记忆管理器
