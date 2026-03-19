@@ -1,4 +1,85 @@
 {
   "version": 1,
-  "jobs": []
+  "jobs": [
+    {
+      "id": "example-daily-reminder",
+      "name": "每日提醒示例",
+      "enabled": false,
+      "deleteAfterRun": false,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "comment": "每天上午 9:00 执行"
+      },
+      "message": "早上好！该开始工作了",
+      "platform": "dingtalk",
+      "webhook": "your_webhook_here",
+      "createdAt": "2026-03-19T00:00:00.000Z",
+      "updatedAt": "2026-03-19T00:00:00.000Z",
+      "state": {}
+    },
+    {
+      "id": "example-weekday-reminder",
+      "name": "工作日提醒示例",
+      "enabled": false,
+      "deleteAfterRun": false,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10 * * 1-5",
+        "comment": "每个工作日（周一到周五）上午 10:00 执行"
+      },
+      "message": "检查邮件和待办事项",
+      "platform": "dingtalk",
+      "webhook": "your_webhook_here",
+      "createdAt": "2026-03-19T00:00:00.000Z",
+      "updatedAt": "2026-03-19T00:00:00.000Z",
+      "state": {}
+    },
+    {
+      "id": "example-periodic-reminder",
+      "name": "定期提醒示例",
+      "enabled": false,
+      "deleteAfterRun": false,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 3600000,
+        "comment": "每 60 分钟执行一次"
+      },
+      "message": "休息一下，喝口水",
+      "platform": "dingtalk",
+      "webhook": "your_webhook_here",
+      "createdAt": "2026-03-19T00:00:00.000Z",
+      "updatedAt": "2026-03-19T00:00:00.000Z",
+      "state": {}
+    },
+    {
+      "id": "example-one-time-reminder",
+      "name": "一次性提醒示例",
+      "enabled": false,
+      "deleteAfterRun": true,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-03-19T14:30:00.000Z",
+        "comment": "在指定时间执行一次后自动删除"
+      },
+      "message": "会议提醒：下午 2:30 开会",
+      "platform": "dingtalk",
+      "webhook": "your_webhook_here",
+      "createdAt": "2026-03-19T00:00:00.000Z",
+      "updatedAt": "2026-03-19T00:00:00.000Z",
+      "state": {}
+    }
+  ],
+  "comments": {
+    "version": "文件格式版本，当前为 1",
+    "jobs": "任务数组",
+    "schedule.kind": "调度类型：cron(cron表达式) | every(固定间隔) | at(指定时间)",
+    "schedule.expr": "cron 表达式格式：分 时 日 月 星期 (0 9 * * * = 每天9点)",
+    "schedule.everyMs": "固定间隔，单位毫秒 (60000 = 1分钟)",
+    "schedule.at": "ISO 8601 格式的具体时间",
+    "platform": "平台标识：feishu | dingtalk | wecom",
+    "webhook": "钉钉的 sessionWebhook，用于推送（可选，默认推送到最近活跃会话）",
+    "deleteAfterRun": "执行一次后是否自动删除",
+    "enabled": "是否启用，false 表示暂停"
+  }
 }

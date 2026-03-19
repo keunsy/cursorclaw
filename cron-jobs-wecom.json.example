@@ -4,7 +4,7 @@
     {
       "id": "example-daily-reminder",
       "name": "每日提醒示例",
-      "enabled": true,
+      "enabled": false,
       "deleteAfterRun": false,
       "schedule": {
         "kind": "cron",
