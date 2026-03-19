@@ -84,4 +84,4 @@ cp config/news-sources.advanced.json.example config/news-sources.json
 
 配置文件**不会提交到仓库**，不影响别人。
 
-详细配置说明见：`docs/news-platform-config.md`
+**可用平台**：抖音热搜、微博热搜、今日头条、知乎热榜、V2EX、百度热搜、36氪、IT之家等 10+ 个数据源。详见配置文件注释。

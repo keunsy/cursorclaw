@@ -396,8 +396,11 @@ cp projects.json.example projects.json
 
 > ⚠️ **仅飞书和钉钉支持**，企业微信暂未实现
 
-在飞书或钉钉对话中说：
+**立即推送**（飞书/钉钉）：
+- `/新闻` 或 `/news` - 立即推送今日热点（默认 10 条）
+- `/新闻状态` 或 `/health` - 查看数据源健康状态
 
+**定时推送**：在对话中说：
 > **每天 9 点推送热点**
 
 系统会自动创建定时任务，到点推送微博、知乎、百度等平台的热榜新闻。
@@ -408,7 +411,7 @@ cp projects.json.example projects.json
 | 18:00 推送热榜 | 每天 18:00 推送 |
 | `/任务 执行 <ID>` | 立即执行一次 |
 
-**详细文档**：[docs/news-push-usage.md](docs/news-push-usage.md)
+**数据源配置**：参见 [config/README.md](config/README.md)（支持微博、知乎、百度、抖音等 10+ 个平台）
 
 ---
 
@@ -556,8 +559,7 @@ A: 各服务目录下执行 `bash service.sh logs`，或查看 `/tmp/feishu-curs
 - **飞书服务**: [feishu/README.md](feishu/README.md) - 完整的飞书配置、功能说明和使用指南
 - **钉钉服务**: [dingtalk/README.md](dingtalk/README.md) - 完整的钉钉配置、功能说明和使用指南
 - **企业微信服务**: [wecom/README.md](wecom/README.md) - 完整的企业微信配置、功能说明和使用指南
-- **热点新闻推送**: [docs/news-push-usage.md](docs/news-push-usage.md) - 新闻推送功能使用文档
-- **个人配置**: [飞书-Cursor-快速参考](docs/飞书-Cursor-快速参考.md) - 项目快捷路由配置
+- **新闻推送配置**: [config/README.md](config/README.md) - 热点新闻数据源配置说明
 
 ---
 
@@ -597,7 +599,8 @@ A: 各服务目录下执行 `bash service.sh logs`，或查看 `/tmp/feishu-curs
 - 📦 **配置文件分离**（每个服务独立 `.env` 和 `cron-jobs.json`）
 - 🎯 **增强的项目路由**（共享 `projects.json`，支持持久切换）
 - 🔐 **安全增强**（平台隔离，独立环境变量）
-- ⚡ **企业微信优势**（主动推送流式回复，延迟更低）
+- ⚡ **企业微信流式优势**（主动推送 vs 飞书轮询，延迟更低）
+- 📱 **多模态扩展**（飞书/钉钉支持语音、图片、文件、新闻推送）
 
 感谢 [@nongjun](https://github.com/nongjun) 的开源贡献。
 
